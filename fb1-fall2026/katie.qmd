@@ -1,0 +1,75 @@
+### Run-Time Verification
+
+There are many different ways to manually verify a program, but a more effective approach is to integrate the verification process into the program itself. Implementing an automatic run-time check will ensure that for every computation, the result is verified against the expected outcome. 
+
+Uses of Run-Time Verification:
+
+- **Performance Monitoring**: Run-time verification can be used to monitor the performance of a program during execution, ensuring that it meets the required performance criteria. It also gives developers the immediate feedback they need to make adjustments to the program as necessary.
+
+- **Security**: Run-time verification can help detect security vulnerabilities in a program by checking for unexpected behavior or unauthorized access during execution. It will stop a program from running if it detects any security issues, preventing potential exploits.
+
+You may have to be careful of the assumptions that you make about the program's behavior, as run-time verification can only check for conditions that are explicitly defined. If a condition is not defined, it may not be checked, leading to potential errors or vulnerabilities being missed. Keep in mind of the cost that run-time verification can introduce, as it may slow down the execution of the program.
+
+### Question: Which of the following is a benefit of run-time verification?
+- [ ] It reduces the complexity of the program.
+- [x] It can detect security vulnerabilities during execution.
+- [ ] It eliminates the need for testing.
+- [ ] It guarantees that the program will run without errors.
+
+
+## Quiz Check
+
+### Q1. Which of the following additions to the code will fix this error?
+```python
+...
+    def my_sqrt(x):
+        """Computes the square root of x, using the Newton-Raphson method"""
+        approx = None
+        guess = x / 2
+        while approx != guess:
+            approx = guess
+            guess = (approx + x / approx) / 2
+        return approx
+
+    def sqrt_program(arg: str) -> None:
+        x = int(arg)
+        print('The root of', x, 'is', my_sqrt(x))
+```
+
+```
+Traceback (most recent call last):
+  File "/var/folders/n2/xd9445p97rb3xh7m1dfx8_4h0006ts/T/ipykernel_1231/1288144681.py", line 2, in <module>
+    sqrt_program("-1")
+  File "/var/folders/n2/xd9445p97rb3xh7m1dfx8_4h0006ts/T/ipykernel_1231/449782637.py", line 3, in sqrt_program
+    print('The root of', x, 'is', my_sqrt(x))
+                                  ^^^^^^^^^^
+  File "/var/folders/n2/xd9445p97rb3xh7m1dfx8_4h0006ts/T/ipykernel_1231/2661069967.py", line 5, in my_sqrt
+    while approx != guess:
+          ^^^^^^^^^^^^^^^
+  File "Timeout.ipynb", line 43, in timeout_handler
+    raise TimeoutError()
+TimeoutError (expected)
+```
+
+<details>
+<summary>Click to Expand for the Answer</summary>
+
+**Answer!**  
+
+To fix the error in the `my_sqrt` function, you need to add a check for negative input values. The square root of a negative number is not defined in the realm of real numbers, and attempting to compute it will lead to an error. We can edit the `sqrt_program` function as follows: 
+```python
+...
+    def sqrt_program(arg: str) -> None:
+        x = int(arg)
+        if x < 0:
+            print("Illegal Input")
+        else:
+            print('The root of', x, 'is', my_sqrt(x))
+```
+</details>
+
+### Q1.5: Which of the following will fix a string input error in the `sqrt_program` function?
+- [ ] Add a try-except block to catch `TypeError` exceptions when converting
+- [x] Add a try-except block to catch `ValueError` exceptions when converting
+- [ ] Add a try-except block to catch `ZeroDivisionError` exceptions when converting
+- [ ] Add a try-except block to catch `IndexError` exceptions when converting
