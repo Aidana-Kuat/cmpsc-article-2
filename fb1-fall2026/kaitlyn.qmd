@@ -1,0 +1,16 @@
+### Test Automation
+
+Automating tests makes it so we don't have to constantly do manual checks of our code and let the computer do all the work of testing for us.
+To do this we use the assert statement which takes any condition you give it and if the condition is true nothing will happen however if the condition is false assert will raise an exception letting you know that the test failed.
+
+```python
+ assert my_sqrt(4) == 2
+```
+Executing this line of code would produce no result this lets us know that the condition is true.
+
+Its important to also handle floating-point computations because of the rounding errors that they have to do this you will want to use an Epsilon value that you will have to call. Epsilon is a constant so you have to apply your own value to it. Epsilon will keep the values below a certain value to ensure equality between iterations.
+
+```python
+ Epsilon = 1e-8
+```
+
