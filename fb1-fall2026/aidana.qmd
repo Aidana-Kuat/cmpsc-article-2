@@ -1,0 +1,115 @@
+To begin with, it is important to understand the difference between function input and system input. Function input is the data that a function receives from another part of a program, where usually programmers know the function's aim and its requirements. For example, `my_sqrt(x)` is designed to work with non-negative numbers, so giving it a negative number would not follow the function's preconditions. System input comes from outside of a program, for example from a user, another file, a network, an API, and so on. It is not as safe or predictable as function input. Therefore, a program that work with  system input should have input validation and error handling. A function usually has preconditions, and a system interface cannot assume that external users will follow them.
+
+In the example from *The Fuzzing Book*, the function `my_sqrt()` is used inside another program called `sqrt_program()`. This program accepts a string as external input and then converts it into an integer:
+
+```python
+def sqrt_program(arg: str) -> None:
+    x = int(arg)
+    print('The root of', x, 'is', my_sqrt(x))
+```
+
+If the user gives a normal input such as `"4"`, the program works as expected:
+
+```python
+sqrt_program("4")
+```
+
+and gives:
+
+```text
+The root of 4 is 2.0
+```
+
+However, the problem appears when the user gives an input that the function was not ready to work with. For example:
+
+```python
+sqrt_program("-1")
+```
+
+Our original `my_sqrt()` function does not properly handle negative numbers, and because of that it enters an infinite loop. To prevent this, the program can check the value before calling `my_sqrt()`:
+
+```python
+def sqrt_program(arg: str) -> None:
+    x = int(arg)
+    if x < 0:
+        print("Illegal Input")
+    else:
+        print('The root of', x, 'is', my_sqrt(x))
+```
+
+Now, if the user enters:
+
+```python
+sqrt_program("-1")
+```
+
+the program responds with:
+
+```text
+Illegal Input
+```
+
+instead of sending the negative number to `my_sqrt()`. However, this still does not solve every possible problem. For example, a user can also enter something like:
+
+```python
+sqrt_program("xyzzy")
+```
+
+The line
+
+```python
+x = int(arg)
+```
+
+tries to convert `"xyzzy"` into an integer, which is impossible, so Python raises a `ValueError`. To avoid crashes, the program can use `try` and `except`:
+
+```python
+def sqrt_program(arg: str) -> None:
+    try:
+        x = float(arg)
+    except ValueError:
+        print("Illegal Input")
+    else:
+        if x < 0:
+            print("Illegal Number")
+        else:
+            print('The root of', x, 'is', my_sqrt(x))
+```
+
+Now the program can handle several different types of inputs:
+
+```python
+sqrt_program("4")
+```
+
+produces:
+
+```text
+The root of 4.0 is 2.0
+```
+
+while:
+
+```python
+sqrt_program("-1")
+```
+
+produces:
+
+```text
+Illegal Number
+```
+
+and:
+
+```python
+sqrt_program("xyzzy")
+```
+
+produces:
+
+```text
+Illegal Input
+```
+
+Programs that receive system input need to be prepared for unexpected values. The programmer cannot just assume that every user will enter the correct type of data. Since a system should be able to handle many different kinds of input without crashing or entering an uncontrolled state, we, as a software engineers, can intentionally send unusual or incorrect inputs to the program and see what happens. For instance, trying negative numbers as shows above, text instead of numbers, empty strings, or very large values and so on. The goal is to find inputs that can crash/break the program and then fix them. With function input, however, we usually need to know the function's preconditions before generating test values for it.
