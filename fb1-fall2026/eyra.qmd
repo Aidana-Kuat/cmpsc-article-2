@@ -64,15 +64,19 @@ inputs without crashing.
 
 ## Limits of Testing
 
-Testing can find many bugs, but it cannot guarantee that a program is completely free of errors. There are too many possible inputs to test every single one.
+Testing can find many bugs, but it cannot guarantee that a program is completely free of 
+errors. There are too many possible inputs to test every single one.
 
 * Random testing may miss unusual or important inputs.
 * Some bugs only happen with specific values or conditions.
 * Run-time checks cannot guarantee that a program will always reach the result being checked.
 
-For example, the `my_sqrt()` function can fail when given `0`, even though it may work correctly with many other values.
+For example, the `my_sqrt()` function can fail when given `0`, even though it may work 
+correctly with many other values.
 
-Because of these limitations, programmers should use different types of tests and carefully choose inputs that could cause problems. Testing increases confidence in software, but it does not prove that the program is perfect.
+Because of these limitations, programmers should use different types of tests and carefully 
+choose inputs that could cause problems. Testing increases confidence in software, but it does 
+not prove that the program is perfect.
 
 
 
@@ -81,12 +85,17 @@ Because of these limitations, programmers should use different types of tests an
 
 A few takeaways from this chapter include:
 
-* **Test Different Inputs**: Testing a program with different and unusual inputs can help find bugs that may not appear during normal use.
+* **Test Different Inputs**: Testing a program with different and unusual inputs can 
+help find bugs that may not appear during normal use.
 
-* **Automate Testing**: Using assertions and automatically generated tests makes testing faster and easier to repeat.
+* **Automate Testing**: Using assertions and automatically generated tests makes testing 
+faster and easier to repeat.
 
-* **Validate Input**: Programs should check external inputs to prevent errors and unexpected behavior.
+* **Validate Input**: Programs should check external inputs to prevent errors and 
+unexpected behavior.
 
-* **Understand the Limits**: Testing can improve confidence in a program, but it cannot guarantee that every possible bug has been found.
+* **Understand the Limits**: Testing can improve confidence in a program, but it 
+cannot guarantee that every possible bug has been found.
 
-Software testing is an important part of development because it helps us find problems early and make our programs more reliable.
+Software testing is an important part of development because it helps us find 
+problems early and make our programs more reliable.
