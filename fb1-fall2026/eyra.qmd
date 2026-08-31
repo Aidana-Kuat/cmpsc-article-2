@@ -33,34 +33,6 @@ Before testing Python code, it is important to understand the basic parts of the
 Understanding how the code works makes it easier to test the program and find problems 
 when the results are not what we expect.
 
-### Automating Tests
-
-Automated testing allows the computer to check whether a program produces the expected 
-results. Using `assert` statements makes it easier to automatically identify when a test fails.
-
-* Use assertions to check if results are correct.
-* Use an acceptable range when testing floating-point numbers.
-* Test multiple inputs instead of relying on one example.
-
-Automated tests save time and can be run repeatedly whenever the program is changed.
-
-### Run-Time Verification
-
-Run-time verification adds checks directly into a program so that results can be checked 
-while the program is running. This can provide immediate feedback when something goes wrong.
-
-Run-time checks can be useful, but they may require extra time and cannot guarantee that
- a program will always produce a correct result.
-
-### System Input vs. Function Input
-
-Programs may receive input from users or other outside sources, so inputs should be 
-checked before they are used. Invalid inputs can cause errors or unexpected behavior.
-
-Using input validation and `try-except` statements can help programs handle incorrect 
-inputs without crashing.
-
-
 
 ## Limits of Testing
 
@@ -77,8 +49,6 @@ correctly with many other values.
 Because of these limitations, programmers should use different types of tests and carefully 
 choose inputs that could cause problems. Testing increases confidence in software, but it does 
 not prove that the program is perfect.
-
-
 
 
 ## Reflection
